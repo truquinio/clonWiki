@@ -1,0 +1,67 @@
+body {
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  margin: 0; /* Asegúrate de eliminar cualquier margen */
+  padding: 0; /* Asegúrate de eliminar cualquier padding */
+  overflow: hidden; /* Evita cualquier posible desbordamiento */
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/fondo.png") repeat scroll 50% 50%;
+  background-size: 1500px 450px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  opacity: 0.15; /* Ajusta este valor para cambiar la opacidad */
+  z-index: -1;
+}
+
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #3366cc;
+  border-color: #3366cc;
+}
+
+.form-container {
+  width: 75%;
+  max-width: 900px;
+}
+
+.logo {
+  max-height: 50px;
+  margin-right: 1px;
+}
