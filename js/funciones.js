@@ -1,34 +1,51 @@
-$('#palabra').change(function () {
+$(function () {
 
-  //console.log('palabra');
+  function buscarDefinicion() {
+    var palabra = $('#palabra').val().trim();
+    var idioma = $('#idioma').val();
 
-  $.post("./php/basededatos.php",
-    {
-      modo: "get",
-      palabra: $("#palabra").val(),
-    },
-    function (data) {
-      $("#definicion").val(data.definicion);
-    },
-    "json"
-  );
-});
+    if (palabra === '') {
+      $('#definicion').val('');
+      return;
+    }
 
-//----------------------------------------------------------------
+    $('#definicion').val('Buscando...');
 
-$("#definicion").change(function () {
+    $.post(
+      './php/diccionario.php',
+      {
+        modo: 'get',
+        palabra: palabra,
+        idioma: idioma,
+      },
+      function (data) {
+        $('#definicion').val(data.definicion);
+      },
+      'json'
+    ).fail(function () {
+      $('#definicion').val('Error al conectar con el servidor.');
+    });
+  }
 
-  //console.log("definicion");
+  // Buscar al presionar Enter en el campo de la palabra
+  $('#palabra').on('keypress', function (e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      buscarDefinicion();
+    }
+  });
 
-  $.post("./php/basededatos.php",
-    {
-      modo: "set",
-      palabra: $("#palabra").val(),
-      definicion: $("#definicion").val()
-    },
-    function (data) {
-      //$("#definicion").html(data.definicion);
-    },
-    "json"
-  );
+  // Buscar al perder el foco (comportamiento original)
+  $('#palabra').on('change', buscarDefinicion);
+
+  // Buscar con el botón
+  $('#buscar-btn').on('click', buscarDefinicion);
+
+  // Volver a buscar si cambian el idioma y ya hay una palabra escrita
+  $('#idioma').on('change', function () {
+    if ($('#palabra').val().trim() !== '') {
+      buscarDefinicion();
+    }
+  });
+
 });
