@@ -1,0 +1,229 @@
+/* =========================================================
+   Mini Diccionario — tema "pergamino medieval"
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+:root {
+  --pergamino-claro: #f3e6c9;
+  --pergamino-medio: #e8d3a0;
+  --pergamino-oscuro: #cbb27a;
+  --tinta: #3b2a1a;
+  --tinta-suave: #5c4630;
+  --sello-lacre: #7a1f1f;
+  --sello-lacre-hover: #8f2727;
+  --oro-viejo: #a9782f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "EB Garamond", "Linux Libertine", "Georgia", "Times", serif;
+  color: var(--tinta);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  /* Fondo tipo papiro: capas de gradientes que simulan manchas,
+     fibras de pergamino y viñeta oscura en los bordes */
+  background-color: var(--pergamino-medio);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(139, 108, 57, 0.25) 0, transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(139, 108, 57, 0.2) 0, transparent 40%),
+    radial-gradient(circle at 25% 85%, rgba(101, 74, 33, 0.25) 0, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(101, 74, 33, 0.2) 0, transparent 45%),
+    repeating-linear-gradient(120deg, rgba(90, 63, 27, 0.05) 0px, rgba(90, 63, 27, 0.05) 2px, transparent 2px, transparent 6px),
+    repeating-linear-gradient(30deg, rgba(90, 63, 27, 0.04) 0px, rgba(90, 63, 27, 0.04) 1px, transparent 1px, transparent 5px),
+    linear-gradient(180deg, var(--pergamino-claro), var(--pergamino-medio) 55%, var(--pergamino-oscuro));
+  background-attachment: fixed;
+}
+
+/* Viñeta oscura en los bordes de la pantalla, como un manuscrito antiguo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: inset 0 0 25vw rgba(40, 25, 10, 0.45);
+}
+
+.form-container {
+  width: 92%;
+  max-width: 760px;
+  margin: 40px auto;
+  position: relative;
+  z-index: 1;
+}
+
+main {
+  background-color: #faf3e2;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(139, 108, 57, 0.08) 0, transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(139, 108, 57, 0.08) 0, transparent 30%);
+  padding: 40px 36px;
+  border-radius: 6px;
+
+  /* "borde de libro antiguo": doble línea + sombra profunda */
+  border: 1px solid var(--oro-viejo);
+  outline: 1px solid rgba(169, 120, 47, 0.35);
+  outline-offset: 6px;
+  box-shadow:
+    0 15px 35px rgba(35, 22, 8, 0.45),
+    0 0 0 1px rgba(169, 120, 47, 0.15);
+}
+
+h1 {
+  font-family: "Cinzel", "Linux Libertine", serif;
+  font-size: 2.1rem;
+  letter-spacing: 0.06em;
+  color: var(--tinta);
+  text-align: center;
+  margin: 0 0 6px;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.subtitulo {
+  text-align: center;
+  font-style: italic;
+  color: var(--tinta-suave);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+hr {
+  border: 0;
+  height: 22px;
+  margin: 18px 0 26px;
+  background: none;
+  position: relative;
+}
+
+hr::before {
+  content: "❧";
+  display: block;
+  text-align: center;
+  color: var(--oro-viejo);
+  font-size: 1.4rem;
+  position: relative;
+  top: -6px;
+}
+
+hr::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oro-viejo) 20%, var(--oro-viejo) 80%, transparent);
+}
+
+label.form-label {
+  font-weight: 600;
+  color: var(--tinta-suave);
+  font-family: "Cinzel", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.form-control,
+.form-select {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  background-color: #fdf8ec;
+  border: 1px solid var(--oro-viejo);
+  color: var(--tinta);
+  border-radius: 4px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--sello-lacre);
+  box-shadow: 0 0 0 0.2rem rgba(122, 31, 31, 0.15);
+}
+
+.form-control::placeholder {
+  color: #9c8768;
+  font-style: italic;
+}
+
+#definicion {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  background-color: #fdf8ec;
+  white-space: pre-wrap;
+  resize: vertical;
+}
+
+/* Botón estilo sello de lacre */
+.btn-dark {
+  background-color: var(--sello-lacre);
+  border-color: var(--sello-lacre);
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  padding: 0 22px;
+  box-shadow: 0 3px 0 #4d1414, 0 6px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.05s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.btn-dark:hover {
+  background-color: var(--sello-lacre-hover);
+  border-color: var(--sello-lacre-hover);
+}
+
+.btn-dark:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #4d1414, 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  max-height: 44px;
+  margin-right: 10px;
+  filter: sepia(0.4);
+}
+
+/* Firma / sello del autor */
+.firma {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(169, 120, 47, 0.4);
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--tinta-suave);
+  text-transform: uppercase;
+}
+
+.firma a {
+  color: var(--sello-lacre);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.firma a:hover {
+  text-decoration: underline;
+}
+
+.fuente {
+  text-align: center;
+  color: var(--tinta-suave);
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+@media (max-width: 576px) {
+  main {
+    padding: 28px 20px;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+}
