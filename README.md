@@ -2,72 +2,84 @@
 
 # 📜 Mini Diccionario
 
-**Webapp PHP multiidioma que consulta definiciones en Wiktionary y las presenta con una interfaz inspirada en manuscritos.**
+### Diccionario web multiidioma conectado a Wiktionary
 
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=flat&logo=php&logoColor=white)
 ![jQuery](https://img.shields.io/badge/jQuery-AJAX-0769AD?style=flat&logo=jquery&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat&logo=bootstrap&logoColor=white)
-![Wiktionary](https://img.shields.io/badge/Data-Wiktionary-000000?style=flat&logo=wikimediafoundation&logoColor=white)
+![Wiktionary](https://img.shields.io/badge/datos-Wiktionary-000000?style=flat&logo=wikimediafoundation&logoColor=white)
 
 </div>
 
 ---
 
-## Qué hace
+## 📖 Qué hace
 
-Mini Diccionario recibe una palabra y un idioma, consulta la API REST pública de Wiktionary desde PHP y devuelve las definiciones en texto legible.
+Mini Diccionario recibe una palabra y un idioma, consulta Wiktionary desde un backend PHP y muestra las definiciones como texto legible.
 
-No utiliza una base de datos propia ni requiere una API key.
+No utiliza base de datos propia ni necesita API key.
 
-Idiomas implementados:
-
-**Español · Inglés · Catalán · Francés · Chino · Alemán · Ruso**
+**Idiomas implementados:** Español · Inglés · Catalán · Francés · Chino · Alemán · Ruso
 
 ## 📸 Capturas
 
-| Estado inicial | Resultado |
+| Inicio | Resultado |
 | --- | --- |
 | ![Vista inicial del diccionario](screenshots/vacio.png) | ![Resultado de una búsqueda](screenshots/resultado.png) |
 
-## 🔄 Flujo
+## 🔄 Cómo funciona
 
-```text
-Usuario
-  │
-  ▼
-index.html
-  │ AJAX POST
-  ▼
-php/diccionario.php
-  │ HTTPS
-  ▼
-Wiktionary REST API
-  │ JSON
-  ▼
-limpieza HTML + agrupación
-  │
-  ▼
-respuesta mostrada en la interfaz
-```
+~~~mermaid
+flowchart LR
+    U["Usuario"] --> F["HTML + Bootstrap"]
+    F --> J["jQuery / AJAX"]
+    J --> P["PHP + cURL"]
+    P --> W["Wiktionary REST API"]
+    W --> P
+    P --> F
+~~~
 
-El endpoint utilizado por el backend es:
+Endpoint utilizado:
 
-```text
+~~~text
 https://{idioma}.wiktionary.org/api/rest_v1/page/definition/{palabra}
-```
+~~~
 
 ## 🧱 Stack
 
-| Área | Tecnología |
-| --- | --- |
-| UI | HTML5 · Bootstrap 5 · CSS |
-| Interacción | jQuery · AJAX |
-| Backend | PHP · cURL |
-| Datos | Wiktionary REST API |
+**Frontend:** HTML5 · Bootstrap 5 · CSS · jQuery  
+**Backend:** PHP · cURL  
+**Datos:** Wiktionary REST API
+
+## ▶️ Ejecutar localmente
+
+<details>
+<summary><strong>Ver instrucciones</strong></summary>
+
+### Requisitos
+
+- PHP 7.4 o superior
+- extensión curl
+- acceso HTTPS a internet
+
+~~~bash
+git clone https://github.com/truquinio/clonWiki.git
+cd clonWiki
+php -S localhost:8000
+~~~
+
+Abre http://localhost:8000.
+
+También puede servirse desde Apache/Nginx o entornos locales como XAMPP.
+
+</details>
 
 ## 🗂️ Estructura
 
-```text
+<details>
+<summary><strong>Ver estructura</strong></summary>
+
+~~~text
 .
 ├── index.html
 ├── css/
@@ -77,32 +89,16 @@ https://{idioma}.wiktionary.org/api/rest_v1/page/definition/{palabra}
 ├── php/
 │   └── diccionario.php
 └── screenshots/
-```
+~~~
 
-## ▶️ Ejecutar localmente
-
-### Requisitos
-
-- PHP 7.4 o superior
-- extensión `curl`
-- salida HTTPS a internet
-
-```bash
-git clone https://github.com/truquinio/clonWiki.git
-cd clonWiki
-php -S localhost:8000
-```
-
-Abre `http://localhost:8000`.
-
-También puede servirse desde Apache/Nginx o entornos locales como XAMPP siempre que PHP y cURL estén disponibles.
+</details>
 
 ## ⚠️ Limitaciones
 
-- La disponibilidad y cobertura dependen de cada edición de Wiktionary.
-- El proyecto depende del endpoint REST externo utilizado por Wikimedia.
-- No hay caché ni base de datos local.
-- No hay una licencia de reutilización declarada en el repositorio actualmente.
+- la cobertura depende de cada edición de Wiktionary;
+- el proyecto depende del endpoint REST externo;
+- no implementa caché ni base de datos local;
+- no hay una licencia de reutilización declarada actualmente.
 
 ---
 
