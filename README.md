@@ -88,7 +88,7 @@ https://{idioma}.wiktionary.org/api/rest_v1/page/definition/{palabra}
 - salida HTTPS a internet
 
 ```bash
-git clone https://github.com/trauquinio/clonWiki.git
+git clone https://github.com/truquinio/clonWiki.git
 cd clonWiki
 php -S localhost:8000
 ```
@@ -106,4 +106,4 @@ También puede servirse desde Apache/Nginx o entornos locales como XAMPP siempre
 
 ---
 
-**Federico Trucco / [@truquinio](https://github.com/trauquinio)**
+**Federico Trucco / [@truquinio](https://github.com/truquinio)**
