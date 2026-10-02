@@ -98,7 +98,11 @@ También puede servirse desde Apache/Nginx o entornos locales como XAMPP.
 - la cobertura depende de cada edición de Wiktionary;
 - el proyecto depende del endpoint REST externo;
 - no implementa caché ni base de datos local;
-- no hay una licencia de reutilización declarada actualmente.
+## 📜 Licencia
+
+El código de este proyecto se publica bajo la [Licencia MIT](LICENSE).
+
+Los contenidos obtenidos desde Wiktionary siguen sujetos a las licencias y términos aplicables de Wikimedia/Wiktionary.
 
 ---
 
