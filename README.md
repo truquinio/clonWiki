@@ -97,7 +97,8 @@ También puede servirse desde Apache/Nginx o entornos locales como XAMPP.
 
 - la cobertura depende de cada edición de Wiktionary;
 - el proyecto depende del endpoint REST externo;
-- no implementa caché ni base de datos local;
+- no implementa caché ni base de datos local.
+
 ## 📜 Licencia
 
 El código de este proyecto se publica bajo la [Licencia MIT](LICENSE).
