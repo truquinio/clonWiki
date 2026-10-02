@@ -2,102 +2,108 @@
 
 # 📜 Mini Diccionario
 
-*Un mini diccionario online multi-idioma, con look de manuscrito antiguo*
+**Webapp PHP multiidioma que consulta definiciones en Wiktionary y las presenta con una interfaz inspirada en manuscritos.**
+
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=flat&logo=php&logoColor=white)
+![jQuery](https://img.shields.io/badge/jQuery-AJAX-0769AD?style=flat&logo=jquery&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat&logo=bootstrap&logoColor=white)
+![Wiktionary](https://img.shields.io/badge/Data-Wiktionary-000000?style=flat&logo=wikimediafoundation&logoColor=white)
 
 </div>
-
-## ✨ ¿Qué es esto?
-
-**Mini Diccionario** es una pequeña webapp que te permite escribir una palabra y obtener su **definición real**, consultada en vivo desde [Wiktionary](https://www.wiktionary.org/) (el proyecto hermano de Wikipedia dedicado a definiciones de palabras).
-
-No usa una base de datos propia ni definiciones inventadas: cada búsqueda dispara una consulta HTTP al servidor de Wiktionary correspondiente al idioma elegido, y el backend en PHP se encarga de traducir esa respuesta a un texto legible.
-
-Soporta 7 idiomas: **Español, Inglés, Catalán, Francés, Chino, Alemán y Ruso**.
-
-## 📸 Capturas
-
-| Estado inicial | Con una búsqueda hecha |
-|---|---|
-| ![Vista vacía](./screenshots/vacio.png) | ![Resultado de búsqueda](./screenshots/resultado.png) |
-
-## 🧱 Estructura del proyecto
-
-```
-diccionario/
-├── index.html          # Interfaz (Bootstrap 5 + tema de pergamino)
-├── css/
-│   └── style.css        # Estilos propios (tema medieval)
-├── js/
-│   └── funciones.js     # Lógica del front (jQuery + AJAX)
-└── php/
-    └── diccionario.php  # Backend: consulta la API de Wiktionary
-```
-
-## ⚙️ Cómo funciona
-
-1. El usuario escribe una palabra y elige un idioma en `index.html`.
-2. `js/funciones.js` envía esos datos por AJAX (`POST`) a `php/diccionario.php`.
-3. `php/diccionario.php` llama a la API REST pública de Wiktionary:
-
-   ```
-   https://{idioma}.wiktionary.org/api/rest_v1/page/definition/{palabra}
-   ```
-
-4. El backend limpia el HTML de la respuesta, la ordena por categoría gramatical y la devuelve como JSON.
-5. El front muestra el resultado en el textarea.
-
-No hay base de datos, no hay API key, no hay configuración adicional: solo necesita que el servidor PHP tenga salida a internet.
-
-## 🛠️ Requisitos
-
-- PHP 7.4 o superior
-- Extensión `curl` habilitada (viene activada por defecto en la mayoría de instalaciones)
-- Acceso saliente a internet en el servidor (puerto 443)
-
-## 🚀 Instalación / uso local
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/truquinio/clonWiki.git
-cd clonWiki
-
-# Levantar un servidor PHP de prueba
-php -S localhost:8000
-```
-
-Luego abrí [http://localhost:8000](http://localhost:8000) en tu navegador.
-
-> También funciona en cualquier hosting con PHP + Apache/Nginx (XAMPP, Laragon, etc.), simplemente copiando la carpeta al directorio público del servidor.
-
-## 🌍 Idiomas soportados
-
-| Código | Idioma |
-|---|---|
-| `es` | Español |
-| `en` | Inglés |
-| `ca` | Catalán |
-| `fr` | Francés |
-| `zh` | Chino |
-| `de` | Alemán |
-| `ru` | Ruso |
-
-*(La cantidad de palabras disponibles depende de qué tan completa esté esa edición de Wiktionary; inglés y español suelen tener la mayor cobertura.)*
-
-## 🎨 Stack
-
-- **HTML5 + Bootstrap 5** para la maqueta
-- **CSS propio** con tema de pergamino/manuscrito medieval (tipografías Cinzel + EB Garamond, texturas con gradientes, botón estilo sello de lacre)
-- **jQuery** para las llamadas AJAX
-- **PHP + cURL** para consumir la API de Wiktionary
-
-## 🤝 Contribuir
-
-Ideas, mejoras o corrección de bugs son bienvenidas. Abrí un issue o mandá un pull request.
 
 ---
 
-<div align="center">
+## Qué hace
 
-**Proyecto by Fede Trucco** · [@truquinio](https://github.com/truquinio)
+Mini Diccionario recibe una palabra y un idioma, consulta la API REST pública de Wiktionary desde PHP y devuelve las definiciones en texto legible.
 
-</div>
+No utiliza una base de datos propia ni requiere una API key.
+
+Idiomas implementados:
+
+**Español · Inglés · Catalán · Francés · Chino · Alemán · Ruso**
+
+## 📸 Capturas
+
+| Estado inicial | Resultado |
+| --- | --- |
+| ![Vista inicial del diccionario](screenshots/vacio.png) | ![Resultado de una búsqueda](screenshots/resultado.png) |
+
+## 🔄 Flujo
+
+```text
+Usuario
+  │
+  ▼
+index.html
+  │ AJAX POST
+  ▼
+php/diccionario.php
+  │ HTTPS
+  ▼
+Wiktionary REST API
+  │ JSON
+  ▼
+limpieza HTML + agrupación
+  │
+  ▼
+respuesta mostrada en la interfaz
+```
+
+El endpoint utilizado por el backend es:
+
+```text
+https://{idioma}.wiktionary.org/api/rest_v1/page/definition/{palabra}
+```
+
+## 🧱 Stack
+
+| Área | Tecnología |
+| --- | --- |
+| UI | HTML5 · Bootstrap 5 · CSS |
+| Interacción | jQuery · AJAX |
+| Backend | PHP · cURL |
+| Datos | Wiktionary REST API |
+
+## 🗂️ Estructura
+
+```text
+.
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── funciones.js
+├── php/
+│   └── diccionario.php
+└── screenshots/
+```
+
+## ▶️ Ejecutar localmente
+
+### Requisitos
+
+- PHP 7.4 o superior
+- extensión `curl`
+- salida HTTPS a internet
+
+```bash
+git clone https://github.com/trauquinio/clonWiki.git
+cd clonWiki
+php -S localhost:8000
+```
+
+Abre `http://localhost:8000`.
+
+También puede servirse desde Apache/Nginx o entornos locales como XAMPP siempre que PHP y cURL estén disponibles.
+
+## ⚠️ Limitaciones
+
+- La disponibilidad y cobertura dependen de cada edición de Wiktionary.
+- El proyecto depende del endpoint REST externo utilizado por Wikimedia.
+- No hay caché ni base de datos local.
+- No hay una licencia de reutilización declarada en el repositorio actualmente.
+
+---
+
+**Federico Trucco / [@truquinio](https://github.com/trauquinio)**
