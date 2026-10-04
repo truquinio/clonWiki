@@ -105,9 +105,6 @@ El código de este proyecto se publica bajo la [Licencia MIT](LICENSE).
 
 Los contenidos obtenidos desde Wiktionary siguen sujetos a las licencias y términos aplicables de Wikimedia/Wiktionary.
 
----
-
-**Federico Trucco / [@truquinio](https://github.com/truquinio)**
 
 ---
 
