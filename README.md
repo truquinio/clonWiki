@@ -4,10 +4,10 @@
 
 ### Diccionario web multiidioma conectado a Wiktionary
 
-![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=flat&logo=php&logoColor=white)
-![jQuery](https://img.shields.io/badge/jQuery-AJAX-0769AD?style=flat&logo=jquery&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat&logo=bootstrap&logoColor=white)
-![Wiktionary](https://img.shields.io/badge/datos-Wiktionary-000000?style=flat&logo=wikimediafoundation&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=flat-square)
+![jQuery](https://img.shields.io/badge/jQuery-AJAX-0769AD?style=flat-square)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat-square)
+![Wiktionary](https://img.shields.io/badge/datos-Wiktionary-000000?style=flat-square)
 
 </div>
 
@@ -30,7 +30,7 @@ No utiliza base de datos propia ni necesita API key.
 ## 🔄 Cómo funciona
 
 ~~~mermaid
-flowchart LR
+flowchart TD
     U["Usuario"] --> F["HTML + Bootstrap"]
     F --> J["jQuery / AJAX"]
     J --> P["PHP + cURL"]
@@ -108,3 +108,7 @@ Los contenidos obtenidos desde Wiktionary siguen sujetos a las licencias y térm
 ---
 
 **Federico Trucco / [@truquinio](https://github.com/truquinio)**
+
+---
+
+**by [truquinio](https://github.com/truquinio)** · [LinkedIn](https://www.linkedin.com/in/federico-trucco/)
